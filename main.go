@@ -41,7 +41,7 @@ func main() {
 
 	app.Patch("/api/todos/:id", func(c *fiber.Ctx) error {
 		// get ID from path
-		id := c.getParam("id")
+		id := c.Params("id")
 
 		for i, todo := range todos {
 			if fmt.Sprint(todo.ID) == id {
@@ -53,7 +53,7 @@ func main() {
 		return c.Status(404).JSON(fiber.Map{"error": "Todo not found"})
 	})
 
-	app.Delete("/api/todos/:id", func(c *fiber.Ctx) error){
+	app.Delete("/api/todos/:id", func(c *fiber.Ctx) error {
 		id := c.Params("id")
 		for i, todo := range todos{
 			if fmt.Sprint(todo.ID) == id{
